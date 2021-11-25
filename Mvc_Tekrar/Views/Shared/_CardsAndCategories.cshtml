@@ -1,0 +1,103 @@
+﻿
+
+<div class="" style="text-align:center; margin-bottom:2pt;">
+    <a asp-controller="Home" asp-action="Index" href="/Home/Index/" style="padding-right: 1rem; padding-left: 1rem; display: inline-block; font-size: 1rem; font-weight: 600; color: rgb(236, 106, 42);">Tümü</a>
+    @foreach (var data in ViewBag.Categories)
+    {
+        <a asp-controller="Home" asp-action="Index" asp-route-id="@data.id" href="/Home/Index/@data.id" style="padding-right: 1rem; padding-left: 1rem; display: inline-block; font-size: 1rem; font-weight: 600; color: rgb(236, 106, 42);">@data.CategoryName</a>
+    }
+</div>
+
+<div class="row content blog-grid masonry"  style="overflow: hidden; width:100%;">
+    <main class="col-12 p-0"style="overflow: hidden;">
+        <div class="row" style="margin-left: 10%; margin-right: 10%; " >
+            @foreach (var data in Model)
+            {
+                <div class="m-2 p-4" style="width:32%;display:flex; flex-direction:column; justify-content:space-between;border: 2px solid rgba(200, 200, 200, .6);">
+                    <div class="header" style="text-align:center; overflow:hidden; ">
+                        <img src="https://pomelosoft.com/images/upload/aa148469-6649-4624-804e-3d6a1786bdd8yazilim.jpg" alt="Yazılım Firması Seçerken Nelere Dikkat Edilmelidir?">
+                    </div>
+                    <div class="body">
+                       
+                        <a href="/Home/details/@data.id" asp-controller="Home" asp-action="Details" asp-route-id="@data.id">
+                            <h4>@data.BlogTitle</h4>
+                            <p>@data.CategoryName</p>
+
+                        </a>
+                    </div>
+                    <div class="footer" style="display: flex; align-items: center; justify-content:space-between;">
+                        <div>
+                            <p> <i class="fa fa-eye"></i> @data.NumberOfClicks</p>
+                        </div>
+                        <div>
+                            <a href="/Home/Edit/@data.id" style="float: right;margin-left:3px; border-radius: 0.25rem;padding:10px;" asp-controller="Home" asp-action="Edit" asp-route-id="@data.id" type="button" class="btn-warning">Edit</a>
+                            <a href="/Home/Delete/@data.id" style="float: right; border-radius: 0.25rem;padding:10px;" asp-controller="Home" asp-action="Delete" asp-route-id="@data.id" type="button" class="btn-danger">Remove</a>
+
+                            
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </main>
+</div>
+                
+            
+
+
+@*<div class="card p-0 text-center item" style="overflow: hidden;width:100%;height:100%">
+
+    <div class="card-caption col-12 p-0">
+        <div class="card-body">
+
+            <div style="height:max-content; width:100%; display:flex; flex-direction: column; justify-content: space-around">
+                <div>
+                    <a href="/Home/details/@data.id" asp-controller="Home" asp-action="Details" asp-route-id="@data.id">
+                        <h4>@data.BlogTitle</h4>
+                        <p>@data.BlogTitle</p>
+
+                    </a>
+                </div>
+                <div>
+                    <a href="/Home/Edit/@data.id" style="float: right;margin-left:3px; border-radius: 0.25rem;padding:10px;" asp-controller="Home" asp-action="Edit" asp-route-id="@data.id" type="button" class="btn-warning">Edit</a>
+                    <a href="/Home/Delete/@data.id" style="float: right; border-radius: 0.25rem;padding:10px;" asp-controller="Home" asp-action="Delete" asp-route-id="@data.id" type="button" class="btn-danger">Remove</a>
+
+                    <p style="float:left; color:"> <i class="fa fa-eye"></i> @data.NumberOfClicks</p>
+                </div>
+            </div>
+
+
+
+        </div>
+
+    </div>
+</div>*@
+
+
+
+
+@*<main class="col-12 p-0" style="width: 100%; clear: both; overflow: hidden; ">
+
+    <div class="row">
+        @foreach (var data in Model)
+        {
+            <div class="col-sm-4 col-auto d-flex w-100 col-lg-4 align-items-stretch pb-4 ">
+                <div class="card p-0 text-center item">
+
+                    <div class="card-caption col-12 p-0">
+                        <div class="card-body">
+                            <a href="/Home/details/@data.id" asp-controller="Home" asp-action="Details" asp-route-id="@data.id">
+                                <h4>@data.BlogTitle</h4>
+                                <p>@data.BlogTitle</p>
+
+                            </a>
+                            <a href="/Home/Edit/@data.id" style="float: right; border-radius: 0.25rem;margin:3px; margin-bottom:3px;margin-right:3px;" asp-controller="Home" asp-action="Edit" asp-route-id="@data.id" type="button" class="btn-warning">Edit</a>
+
+                            <p style="float:left; color:"> <i class="fa fa-eye"></i> @data.NumberOfClicks</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</main>*@
