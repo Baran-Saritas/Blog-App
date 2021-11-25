@@ -1,0 +1,48 @@
+﻿@{
+    var pageIndex = ViewBag.PageIndex;
+    var totalPage = (ViewBag.TotalData / 10) + 1;
+
+
+
+}
+
+@{
+   
+    var totalRowCount = (pageIndex + 5) >= totalPage ? (totalPage - pageIndex) : pageIndex + 5;
+
+    <nav aria-label="Page navigation example" style="margin-top:5px;">
+        <ul style="justify-content:center" class="pagination">
+            <li class="page-item"><a class="page-link" href="/Home/Index/?pageIndex=@(pageIndex - 1 <= 0 ? 0 : pageIndex-1 )">Previous</a></li>
+           @* <li class="page-item"><a class="page-link" href="/Home/Index/?pageIndex=@(pageIndex-10 <= 0 ? 0 :pageIndex-10 )"> - 10 </a></li>*@
+
+            @if ((totalPage - pageIndex) >= 5 && (pageIndex - 2 >= 0))    // bulundugumuz sayfanin indexinin hep ortada olmasi icin yapildi
+            {
+                for (var i = pageIndex - 2; i < (totalRowCount - 2); i++)
+                {
+
+                    <li class="page-item"><a class="page-link" href="/Home/Index/?pageIndex=@i">@(i+1)</a></li>
+
+                }
+            }
+            @if ((pageIndex < 2) && (pageIndex >= 0))   // ilk 2 sayfada indexini ortaya alamayacagim icin ayrica if yazildi
+            {
+                for (var i = pageIndex; i < (totalRowCount); i++)
+                {
+
+                    <li class="page-item"><a class="page-link" href="/Home/Index/?pageIndex=@i">@(i+1)</a></li>
+
+                }
+            }
+
+            @if ((totalRowCount <= 5) && (pageIndex > 2))     // son 5 sayfanin duzenli olmasi icin yazildi
+            {
+                for (var i = (pageIndex - (5 - totalRowCount)); i < pageIndex + totalRowCount; i++)
+                {
+                    <li class="page-item"><a class="page-link" href="/Home/Index/?pageIndex=@i">@(i+1)</a></li>
+                }
+            }
+            @*<li class="page-item"><a class="page-link" href="/Home/Index/?pageIndex=@(pageIndex +10 > totalPage ? totalPage : pageIndex +10  )">+10</a></li>*@
+            <li class="page-item"><a class="page-link" href="/Home/Index/?pageIndex=@(pageIndex+1 > totalPage ? totalPage : pageIndex +1)">Next</a></li>
+        </ul>
+    </nav>
+}

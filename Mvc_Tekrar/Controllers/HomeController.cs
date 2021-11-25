@@ -10,7 +10,7 @@ namespace Mvc_Tekrar.Controllers
     public class HomeController : Controller
     {
 
-        public IActionResult Index(int? id)
+        public IActionResult Index(int? id,int pageIndex = 0)
         {
             using (var context = new Context())
             {
@@ -25,7 +25,10 @@ namespace Mvc_Tekrar.Controllers
                                    NumberOfClicks = d1.NumberOfClicks
 
                                };
-                var data = BlogList.OrderByDescending(x => x.id).ToList();
+                var skipRows = (pageIndex) * 10;
+                ViewBag.PageIndex = pageIndex;
+                var data = BlogList.OrderByDescending(x => x.id).Skip(skipRows).Take(10).ToList();
+                ViewBag.TotalData = data.Count();
                 if (id != null)
                 {
                     data = BlogList.Where(p => p.CategoryId == id).ToList();
@@ -44,7 +47,7 @@ namespace Mvc_Tekrar.Controllers
 
                 var blogDetails = context.Blog.FirstOrDefault(p => p.id == id); // tiklanilan kartin bilgileri
                 blogDetails.NumberOfClicks += 1;
-                ViewBag.LatestArticles = context.Blog.OrderByDescending(x => x.NumberOfClicks).ToList();   // Bütün veriler izlenmeye gore
+                ViewBag.LatestArticles = context.Blog.OrderByDescending(x => x.NumberOfClicks).Take(10).ToList();   // Bütün veriler izlenmeye gore
                 context.SaveChanges();
                 return View(blogDetails);
             }
