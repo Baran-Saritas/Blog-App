@@ -11,12 +11,10 @@ namespace Mvc_Tekrar.Models
 
         [Key]
         public int id { get; set; }
-
-        [Required]
-        [StringLength(100,MinimumLength =10,ErrorMessage="Blog Title Girmelisiniz!")]
+        [Required(ErrorMessage="Blog Title Girmelisiniz!")]   // diger yapida burdaki stringi yansitamiyoruz ondan boyle kullanildi
         public string BlogTitle { get; set; }
         [Required(ErrorMessage ="Category Secmelisniz!")]
-        public int CategoryId { get; set; }
+        public int? CategoryId { get; set; }   // secim isin icine girdiginde ? kullanilmadan required aktif edemezsin 
         public int NumberOfClicks { get; set; }
 
     }
