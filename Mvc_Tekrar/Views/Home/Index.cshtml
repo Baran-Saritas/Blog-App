@@ -1,5 +1,6 @@
 ﻿@model List<Mvc_Tekrar.Models.BlogCategoryView>
 @{
+    Layout = "_Layout";
     var a = ViewBag.Categories;
 
     var b = 3;
@@ -35,7 +36,6 @@
 </head>
 <body>
 
-    @await Html.PartialAsync("_navbar")
 
     @await Html.PartialAsync("_header")
 
@@ -43,7 +43,6 @@
 
     @await Html.PartialAsync("_paginationBar")
 
-    @await Html.PartialAsync("_footer")
 
 </body>
 </html>

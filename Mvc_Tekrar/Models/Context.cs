@@ -15,7 +15,6 @@ namespace Mvc_Tekrar.Models
             optionsBuilder.UseSqlServer(" server=(localdb)\\MSSQLLocalDB; database=BlogApp; integrated security = true;");
         }
 
-
         public DbSet<Blog> Blog { get; set; }
         public DbSet<Category> Category { get; set; }
         public DbSet<User> User { get; set; }

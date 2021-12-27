@@ -1,4 +1,7 @@
-﻿
+﻿@model Mvc_Tekrar.Models.Blog
+@{ 
+    Layout = "_Layout";
+}
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <link href="~/bootstrap/css/bootstrap.css" rel="stylesheet" />
@@ -29,8 +32,6 @@
     </style>
 </head>
 <body>
-    @await Html.PartialAsync("_navbar")
-
     <main class="my-3">
 
         <div class="container">
@@ -49,13 +50,14 @@
                 <div class="form-group">
 
                     <label for="BlogTitle">Blog Title</label>
-                    <input type="text" name="BlogTitle" class="form-control" />
+                    <input type="text" name="BlogTitle" value="@Model.BlogTitle" class="form-control" />
+                    <span asp-validation-for="BlogTitle"></span>
 
                 </div>
                 <div class="form-group">
 
                     <label for="BlogTitle">Category</label>
-                    <select name="CategoryId" class="form-control">
+                    <select name="CategoryId"  class="form-control">
                         <option value="" disabled selected> Kategori Seçiniz </option>
                         @foreach (var data in ViewBag.Categories)
                         {
@@ -64,6 +66,7 @@
                         }
 
                     </select>
+                    <span asp-validation-for="CategoryId"></span>
 
                 </div>
                 <button type="submit" class="btn btn-success">Submit</button>
@@ -73,6 +76,5 @@
         </div>
 
     </main>
-    @await Html.PartialAsync("_footer")
 </body>
 </html>

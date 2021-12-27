@@ -1,4 +1,7 @@
 ﻿@model Mvc_Tekrar.Models.Blog
+@{ 
+    Layout = "_Layout";
+}
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <link href="~/bootstrap/css/bootstrap.css" rel="stylesheet" />
@@ -29,7 +32,6 @@
     </style>
 </head>
 <body>
-    @await Html.PartialAsync("_navbar")
 
     <main class="my-3">
 

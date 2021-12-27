@@ -1,5 +1,7 @@
 ﻿@model Mvc_Tekrar.Models.Blog
-
+@{ 
+    Layout = "_Layout";
+}
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 
@@ -32,13 +34,7 @@
 
 </head>
 <body>
-
-
-    @await Html.PartialAsync("_navbar")
-
     @await Html.PartialAsync("_displayHeader")
-
-
     <div style="overflow: hidden;">
 
         <main class="col-12 col-lg-8 p-0" style="margin-left:10%;margin-right:10%;">
@@ -46,7 +42,6 @@
             Yazılan Blog içeriği..
 
         </main>
-
         <div class="col-12 col-lg-4 pl-lg-5 p-0 float-right sidebar">
             <div class="row item">
                 <div class="col-12 align-self-center text-left">
@@ -63,15 +58,6 @@
                 </div>
             </div>
         </div>
-
-
     </div>
-
-
-
-
-    @await Html.PartialAsync("_footer")
 </body>
-
-
 </html>

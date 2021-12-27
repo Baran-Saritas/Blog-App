@@ -10,7 +10,7 @@ namespace Mvc_Tekrar.Controllers
     public class HomeController : Controller
     {
 
-        public IActionResult Index(int? id,int pageIndex = 0)
+        public IActionResult Index(int? id, int pageIndex = 0)
         {
             using (var context = new Context())
             {
@@ -27,7 +27,7 @@ namespace Mvc_Tekrar.Controllers
                                };
                 var skipRows = (pageIndex) * 10;
                 ViewBag.PageIndex = pageIndex;
-                var data = BlogList.OrderByDescending(x => x.id).Skip(skipRows).Take(10).ToList();
+                var data = BlogList.OrderByDescending(x => x.id).Skip(skipRows).Take(9).ToList();
                 ViewBag.TotalData = data.Count();
                 if (id != null)
                 {
@@ -60,7 +60,7 @@ namespace Mvc_Tekrar.Controllers
             using (var context = new Context())
             {
                 ViewBag.Categories = context.Category.ToList();
-                return View();
+                return View(new Blog());
             }
 
         }
@@ -68,17 +68,24 @@ namespace Mvc_Tekrar.Controllers
         [HttpPost]
         public IActionResult Create(Blog blog)
         {
-
-            #region Add Blog
             using (var context = new Context())
             {
-                ViewBag.Categories = context.Category.ToList();
-                context.Add(blog);
-                context.SaveChanges();
-            }
-            #endregion
 
-            return View();
+                ViewBag.Categories = context.Category.ToList();
+                if (ModelState.IsValid)
+                {
+                    #region Add Blog
+
+                    context.Add(blog);
+                    context.SaveChanges();
+                    return RedirectToAction("Index");
+
+                }
+                #endregion
+
+
+                return View(blog);
+            }
 
         }
         [HttpGet]

@@ -28,12 +28,12 @@ namespace MvcCoreApp
 
             // Add Static Files Middleware  
             app.UseStaticFiles();
-
+            app.UseAuthorization();
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllerRoute(
                     name: "default",
-                    pattern: "{controller=Account}/{action=index}/{id?}"
+                    pattern: "{controller=Home}/{action=index}/{id?}"
                     );
             });
         }
